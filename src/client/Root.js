@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import App from 'shared/App'
+import {hot} from 'react-hot-loader'
 
 const Root = () => {
     return (
@@ -10,4 +11,4 @@ const Root = () => {
     )
 }
 
-export default Root
+export default hot(module)(Root)
