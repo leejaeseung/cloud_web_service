@@ -1,16 +1,23 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import { Container } from '@material-ui/core'
 
 import { 
-  Home    
-} from 'pages/index.async.js'    // 코드 스플리팅 적용
+  Home,
+  OriginRecipes,
+  MyRecipes
+} from 'pages/index.async.js'
+import { GNB } from 'components'
 
 const App = () => {
 
   return (
-      <div>
+      <Container maxWidth="xl">
+          <GNB/>
           <Route exact path="/" component={Home}/>
-      </div>
+          <Route exact path="/originrecipes" component={OriginRecipes}/>
+          <Route exact path="/myrecipes" component={MyRecipes}/>
+      </Container>
   )
 }
 
