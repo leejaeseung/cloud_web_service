@@ -1,11 +1,29 @@
-import React from 'react'
-import MapForm from 'components/MapForm'
+import React, {useState} from 'react'
 import SearchForm from 'components/SearchForm'
+import ListForm from 'components/ListForm'
+import Button from '@material-ui/core/Button'
+import {makeStyles} from '@material-ui/core/styles'
+
 import * as config from '../config'
+
+const useStyles = makeStyles(() => ({
+    top: {
+        width: "800px",
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    createBt: {
+        marginTop: "auto",
+        marginBottom: "3px",
+        height: "40px",
+        fontWeight: "bold",
+    }
+}))
 
 const MyRecipes = () => {
 
-
+    const [items, setItems] = useState([])
+    const classes = useStyles()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,15 +40,29 @@ const MyRecipes = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-
+            setItems(data.recipes)
 
         })
     }
 
     return (
         <div>
-            <SearchForm onSubmit={handleSubmit}/>
+            <div className={classes.top}>
+                <SearchForm 
+                    onSubmit={handleSubmit}
+                />
+                <Button
+                    className={classes.createBt}
+                    variant="contained"
+                >
+                    레시피 만들기
+                </Button>
+            </div>
+            
+
+            <ListForm
+                items={items}
+            />
         </div>
     )
 }

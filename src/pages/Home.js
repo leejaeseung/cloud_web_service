@@ -1,5 +1,4 @@
 import React from 'react'
-import MapForm from 'components/MapForm'
 import SearchForm from 'components/SearchForm'
 
 const Home = () => {

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SearchForm from 'components/SearchForm'
-import * as config from '../config'
+import ListForm from 'components/ListForm'
 
+import * as config from '../config'
 
 const OriginRecipes = () => {
 
     
-    
+    const [items, setItems] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -23,15 +24,21 @@ const OriginRecipes = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-
-
+            setItems(data.recipes)
         })
     }
 
     return (
         <div>
-            <SearchForm onSubmit={handleSubmit}/>
+            <SearchForm 
+                onSubmit={handleSubmit}
+                />
+
+            <ListForm
+                items={items}
+            />
+            
+            
         </div>
     )
 }
