@@ -36,7 +36,10 @@ const OriginRecipes = () => {
 
             <ListForm
                 items={items}
+                type="origin"
             />
+
+            
             
             
         </div>

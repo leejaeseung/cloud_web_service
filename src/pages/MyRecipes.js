@@ -62,6 +62,7 @@ const MyRecipes = () => {
 
             <ListForm
                 items={items}
+                type="my"
             />
         </div>
     )
