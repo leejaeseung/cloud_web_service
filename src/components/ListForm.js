@@ -7,6 +7,7 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import RecipeInfo from 'components/RecipeInfo'
+import DeleteDialog from 'components/DeleteDialog'
 
 import * as config from '../config'
 
@@ -65,19 +66,29 @@ const ListForm = (props) => {
 
     const classes = useStyles()
 
-    const [open, setOpen] = useState(false)
+    const [openView, setOpenView] = useState(false)
+    const [openDelete, setOpenDelete] = useState(false)
     const [clickedItem, setClicked] = useState()
+    const [deleteID, setDeleteID] = useState("")
 
     //const clickedItem = useRef()
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleViewClose = () => {
+        setOpenView(false);
     }
 
-    const handleOpen = (item) => {
+    const handleDeleteClose = () => {
+        setOpenDelete(false)
+    }
+
+    const handleViewOpen = (item) => {
 
         const recID = item.recID
-        const uri = config.API_URI + 'originrecipes/' + recID
+        let uri
+        if(props.type == "origin")
+            uri = config.API_URI + 'originrecipes/' + recID
+        else if(props.type == "my")
+            uri = config.API_URI + 'myrecipes/' + recID
 
         fetch(uri,
             {
@@ -92,9 +103,8 @@ const ListForm = (props) => {
                 console.log(data)
 
                 setClicked(data)
-                setOpen(true);
-            })
-        
+                setOpenView(true);
+            })   
     }
 
     return (
@@ -123,7 +133,7 @@ const ListForm = (props) => {
                                             <ListItem 
                                                 button 
                                                 className={classes.listItems} 
-                                                onClick={handleOpen.bind(this,item)} 
+                                                onClick={handleViewOpen.bind(this,item)} 
                                                 
                                                 id={index}
                                             >
@@ -141,6 +151,10 @@ const ListForm = (props) => {
                                                 <Button
                                                     className={classes.deleteBt}
                                                     variant="contained"
+                                                    onClick={() => {
+                                                        setOpenDelete(true)
+                                                        setDeleteID(item.recID)
+                                                    }}
                                                 >
                                                     삭제
                                                 </Button>
@@ -155,10 +169,16 @@ const ListForm = (props) => {
                     }
                 })()
             }
-            {clickedItem && <RecipeInfo
+            {openView && <RecipeInfo
                 item={clickedItem}
-                onClose={handleClose}
-                open={open}
+                onClose={handleViewClose}
+                open={openView}
+            />
+            }
+            {openDelete && <DeleteDialog
+                recID={deleteID}
+                onClose={handleDeleteClose}
+                open={openDelete}
             />
             }
         </div>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -16,6 +15,8 @@ const useStyles = makeStyles(() => ({
         fontWeight: "bold"
     },
     sub : {
+        display: "flex",
+        flexDirection: "column",
         fontWeight: "bold",
     },
     content: {
@@ -69,7 +70,7 @@ const RecipeInfo = (props) => {
                 {
                     
                         props.item.ingredients.map((ingredients, index) => (  
-                            <div className={classes.ing} key={ingredients.ingName}>
+                            <div className={classes.ing} key={index}>
                                 <div className={classes.childs} >         
                                     <span className={classes.content}>
                                         {ingredients.ingName}

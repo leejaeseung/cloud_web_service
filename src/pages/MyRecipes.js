@@ -4,6 +4,8 @@ import ListForm from 'components/ListForm'
 import Button from '@material-ui/core/Button'
 import {makeStyles} from '@material-ui/core/styles'
 
+import CreateRecipe from 'components/CreateRecipe'
+
 import * as config from '../config'
 
 const useStyles = makeStyles(() => ({
@@ -23,6 +25,7 @@ const useStyles = makeStyles(() => ({
 const MyRecipes = () => {
 
     const [items, setItems] = useState([])
+    const [createOpen, setCO] = useState(false)
     const classes = useStyles()
 
     const handleSubmit = (e) => {
@@ -45,6 +48,14 @@ const MyRecipes = () => {
         })
     }
 
+    const openCreate = () => {
+        setCO(true)
+    }
+
+    const closeCreate = () => {
+        setCO(false)
+    }
+
     return (
         <div>
             <div className={classes.top}>
@@ -54,6 +65,7 @@ const MyRecipes = () => {
                 <Button
                     className={classes.createBt}
                     variant="contained"
+                    onClick={openCreate}
                 >
                     레시피 만들기
                 </Button>
@@ -64,6 +76,13 @@ const MyRecipes = () => {
                 items={items}
                 type="my"
             />
+            {
+                createOpen && 
+                <CreateRecipe
+                    open={createOpen}
+                    onClose={closeCreate}
+                />
+            }
         </div>
     )
 }
