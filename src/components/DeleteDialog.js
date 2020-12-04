@@ -67,11 +67,9 @@ const DeleteDialog = (props) => {
             .then(res => res.json())
             .then(data => {
 
-                console.log(data)
-
                 if(data.success){
                     alert("레시피 삭제 성공")
-                    document.location.href='/myrecipes'
+                    props.reset()
                 }
                 else{
                     alert("레시피 삭제 실패")

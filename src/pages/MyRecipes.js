@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import SearchForm from 'components/SearchForm'
 import ListForm from 'components/ListForm'
 import Button from '@material-ui/core/Button'
@@ -27,6 +27,62 @@ const MyRecipes = () => {
     const [items, setItems] = useState([])
     const [createOpen, setCO] = useState(false)
     const classes = useStyles()
+    const [nowPage, setNowPage] = useState(0)
+    const [pages, setPages] = useState([1])
+
+    const makePages = (len) => {
+        const array = []
+
+        for(let i = 1; i <= len; i++)
+            array.push(i)
+
+        return array
+    }
+
+    const resetRecipes = () => {
+        const uri = config.API_URI + 'myrecipes?search='
+
+            fetch(uri,
+                {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            .then(res => res.json())
+            .then(data => {
+                setItems(data.recipes)
+                window.sessionStorage.setItem("myRecipes", JSON.stringify(data.recipes))
+                setPages(makePages(data.recipes.length / 10 + 1))
+            })
+    }
+
+    useEffect(() => {
+        
+        const prevItems = JSON.parse(window.sessionStorage.getItem("myRecipes"))
+
+        if(!prevItems){
+            const uri = config.API_URI + 'myrecipes?search='
+
+            fetch(uri,
+                {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            .then(res => res.json())
+            .then(data => {
+                setItems(data.recipes)
+                window.sessionStorage.setItem("myRecipes", JSON.stringify(data.recipes))
+                setPages(makePages(data.recipes.length / 10 + 1))
+            })
+        }
+        else{
+            setItems(prevItems)
+            setPages(makePages(prevItems.length / 10 + 1))
+        }
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -44,7 +100,9 @@ const MyRecipes = () => {
         .then(res => res.json())
         .then(data => {
             setItems(data.recipes)
-
+            window.sessionStorage.setItem("myRecipes", JSON.stringify(data.recipes))
+            setPages(makePages(data.recipes.length / 10 + 1))
+            setNowPage(0)
         })
     }
 
@@ -74,12 +132,17 @@ const MyRecipes = () => {
 
             <ListForm
                 items={items}
+                nowPage={nowPage}
+                setNowPage={setNowPage}
+                pages={pages}
+                reset={resetRecipes}
                 type="my"
             />
             {
                 createOpen && 
                 <CreateRecipe
                     open={createOpen}
+                    reset={resetRecipes}
                     onClose={closeCreate}
                 />
             }

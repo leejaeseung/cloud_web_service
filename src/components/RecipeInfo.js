@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button'
 
 
 const useStyles = makeStyles(() => ({
-    root: {
-    },
     title: {
         fontSize: "25px",
         fontWeight: "bold"
@@ -55,7 +53,6 @@ const RecipeInfo = (props) => {
             maxWidth="sm"
             open={props.open}
             onClose={props.onClose}
-            className={classes.root}
         >
             <DialogTitle disableTypography className={classes.title}>{props.item.recName}</DialogTitle>
             <DialogContent className={classes.sub}>

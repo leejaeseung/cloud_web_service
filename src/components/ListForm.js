@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {makeStyles} from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import RecipeInfo from 'components/RecipeInfo'
 import DeleteDialog from 'components/DeleteDialog'
+import Link from '@material-ui/core/Link'
 
 import * as config from '../config'
 
@@ -59,6 +60,18 @@ const useStyles = makeStyles(() => ({
         marginBottom: "auto",
         height: "40px",
         fontWeight: "bold",
+    },
+    pageBox: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        marginBottom: "15px",
+        fontSize: "20px",
+        fontWeight: "bold",
+    },
+    pageItems: {
+        marginRight: "13px",
+
     }
 }))
 
@@ -66,12 +79,29 @@ const ListForm = (props) => {
 
     const classes = useStyles()
 
+    //const [initPage, setInitPage] = useState(1)
+    const [nowPages, setNowPages] = useState([])
+    const [nowPageItems, setNowPageItems] = useState([])
+
     const [openView, setOpenView] = useState(false)
     const [openDelete, setOpenDelete] = useState(false)
     const [clickedItem, setClicked] = useState()
     const [deleteID, setDeleteID] = useState("")
 
-    //const clickedItem = useRef()
+    useEffect(() => {
+        const start = (props.nowPage) * 10
+        const end = start + 10
+        const newItems = props.items.slice(start, end)
+
+        const pagesStart = parseInt(props.nowPage / 10) * 10
+        const pagesEnd = pagesStart + 10
+        const newPages = props.pages.slice(pagesStart, pagesEnd)
+
+
+        setNowPages(newPages)
+        setNowPageItems(newItems)
+        
+    }, [props.nowPage, props.pages])
 
     const handleViewClose = () => {
         setOpenView(false);
@@ -100,16 +130,27 @@ const ListForm = (props) => {
             .then(res => res.json())
             .then(data => {
 
-                console.log(data)
-
                 setClicked(data)
                 setOpenView(true);
             })   
     }
 
+    const pageClick = (e) => {
+        const num = e.target.id - 1
+        
+        props.setNowPage(num)
+    }
+
+    const onPrev = () => {
+        props.setNowPage(props.nowPage - 1)
+    }
+
+    const onNext = () => {
+        props.setNowPage(props.nowPage + 1)
+    }
+
     return (
         <div className={classes.root}>
-
 
             {
                 (() => {
@@ -127,7 +168,7 @@ const ListForm = (props) => {
                                     &nbsp;&nbsp;총 {props.items.length} 개의 레시피가 검색되었습니다. 자세한 정보를 보려면 클릭하세요.
                                 </p>
                                 {
-                                    props.items.map((item, index) => (
+                                    nowPageItems.map((item, index) => (
                                         <div className={classes.lists} key={item.recID}>
                                             <Divider/>
                                             <ListItem 
@@ -177,10 +218,56 @@ const ListForm = (props) => {
             }
             {openDelete && <DeleteDialog
                 recID={deleteID}
+                reset={props.reset}
                 onClose={handleDeleteClose}
                 open={openDelete}
             />
             }
+
+            <div className={classes.pageBox}>
+                {
+                    props.nowPage > 0 ?
+                    <Link
+                        href='#'
+                        color="inherit"
+                        className={classes.pageItems}
+                        onClick={onPrev}
+                    >
+                        이전
+                    </Link>
+                    : ""
+                }
+                {
+                    nowPages.map((item) => {
+                        return (
+                            <div key={item}>
+                                <Link 
+                                    id={item}
+                                    className={classes.pageItems}
+                                    href='#'
+                                    color={item == props.nowPage + 1 ? "primary" : "inherit"}
+                                    onClick={pageClick}
+                                >
+                                    {item}
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
+                {
+                    props.nowPage < props.pages.length - 1 ?
+                    <Link
+                    href='#'
+                    color="inherit"
+                    className={classes.pageItems}
+                    onClick={onNext}
+                >
+                    다음
+                </Link>
+                : ""
+                }
+            </div>
+
         </div>
     )
 }

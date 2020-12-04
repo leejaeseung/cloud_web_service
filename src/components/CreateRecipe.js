@@ -125,6 +125,11 @@ const RecipeInfo = (props) => {
 
     const createRecipe = () => {
 
+        if(ing_name != "" && ing_cap != "")
+            ingredients.push({ingName: ing_name, capacity: ing_cap})
+        if(process != "")
+            processes.push(process)
+
         const body = JSON.stringify({
             nickName,
             password,
@@ -150,8 +155,8 @@ const RecipeInfo = (props) => {
             .then(data => {
 
                 alert("레시피가 등록되었습니다.(redID : " + data.recID + ")")
-
-               props.onClose()
+                props.reset()
+                props.onClose()
             })
     }
 
