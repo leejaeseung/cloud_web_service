@@ -9,8 +9,10 @@ import CreateRecipe from 'components/CreateRecipe'
 import * as config from '../config'
 
 const useStyles = makeStyles(() => ({
+    root: {
+        width: "100%",
+    },
     top: {
-        width: "800px",
         display: "flex",
         justifyContent: "space-between",
     },
@@ -115,7 +117,7 @@ const MyRecipes = () => {
     }
 
     return (
-        <div>
+        <div className={classes.root}>
             <div className={classes.top}>
                 <SearchForm 
                     onSubmit={handleSubmit}

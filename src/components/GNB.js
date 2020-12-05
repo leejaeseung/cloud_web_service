@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import { Link } from 'react-router-dom';
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(() => ({
     root : {
         display: "flex",
+        width: "100%",
         marginTop: "15px",
+        alignItems: "flex-start"
     },
     links : {
         textDecoration: "none",
@@ -60,7 +63,7 @@ const GNB = () => {
     }
 
     return (
-        <div className={classes.root}>
+        <Box className={classes.root}>
 
             <Link 
                 id="1" 
@@ -88,7 +91,7 @@ const GNB = () => {
             >
                 나만의 레시피
             </Link>
-        </div>
+        </Box>
     )
 }
 

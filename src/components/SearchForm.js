@@ -4,17 +4,21 @@ import {makeStyles} from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(() => ({
+    root: {
+        width: "60%"
+    },
     form : {
         display: "flex",
-        width: "500px",
+        width: "100%",
         marginTop: "15px",
         borderRadius: 10,
         border: "solid 2px #6E6E6E",
     },
     searchRoot : {
-        width: "500px",
+        width: "100%",
         marginRight: "10px",
         //backgroundColor: "#A9D0F5"
         
@@ -38,7 +42,7 @@ const SearchForm = (props) => {
     const classes = useStyles()
 
     return (
-        <div>
+        <Box className={classes.root}>
             <form onSubmit={props.onSubmit} className={classes.form}>
                 
                 <InputBase 
@@ -57,7 +61,7 @@ const SearchForm = (props) => {
                     <SearchIcon />
                 </IconButton>
             </form>
-        </div>
+        </Box>
     )
 }
 

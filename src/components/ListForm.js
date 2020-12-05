@@ -4,7 +4,6 @@ import {makeStyles} from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import RecipeInfo from 'components/RecipeInfo'
 import DeleteDialog from 'components/DeleteDialog'
@@ -14,7 +13,7 @@ import * as config from '../config'
 
 const useStyles = makeStyles(() => ({
     root: {
-        width: "800px",
+        width: "100%",
         marginTop: "15px",
         borderRadius: 10,
         border: "solid 2px #6E6E6E",
@@ -22,12 +21,13 @@ const useStyles = makeStyles(() => ({
     lists: {
         display:"flex",
         flexDirection: "row",
+        //borderTop:  "solid 1px black",
     },
     listItems: {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        width: "700px",
+        width: "800px",
     },
     item: {
         width: "100%",
@@ -56,8 +56,7 @@ const useStyles = makeStyles(() => ({
         }
     },
     deleteBt: {
-        marginTop: "auto",
-        marginBottom: "auto",
+        margin: "auto auto auto auto",
         height: "40px",
         fontWeight: "bold",
     },
@@ -163,19 +162,18 @@ const ListForm = (props) => {
                     }
                     else{
                         return (
-                            <List>
+                            <List style={{marginLeft: "10px"}}>
                                 <p style={{color: "#0B0B61"}}>
                                     &nbsp;&nbsp;총 {props.items.length} 개의 레시피가 검색되었습니다. 자세한 정보를 보려면 클릭하세요.
                                 </p>
                                 {
                                     nowPageItems.map((item, index) => (
                                         <div className={classes.lists} key={item.recID}>
-                                            <Divider/>
                                             <ListItem 
                                                 button 
                                                 className={classes.listItems} 
                                                 onClick={handleViewOpen.bind(this,item)} 
-                                                
+                                                divider
                                                 id={index}
                                             >
                                                 <div className={classes.item}>

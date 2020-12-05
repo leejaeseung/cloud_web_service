@@ -12,7 +12,7 @@ import { GNB } from 'components'
 const App = () => {
 
   return (
-      <Container maxWidth="xl">
+      <Container maxWidth="md" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <GNB/>
           <Route exact path="/" component={Home}/>
           <Route exact path="/originrecipes" component={OriginRecipes}/>
@@ -22,3 +22,4 @@ const App = () => {
 }
 
 export default App
+
