@@ -80,7 +80,7 @@ const GNB = () => {
                 className={click == 2 || index == 2? classes.linksActive : classes.links} 
                 to='/originrecipes'
             >
-                원조 레시피
+                기본 레시피
             </Link>
 
             <Link 
