@@ -37,23 +37,32 @@
 
 - **게시판 이동**
 
-![image](https://user-images.githubusercontent.com/23518329/102706486-a940de00-42d5-11eb-929b-a47504da0462.png)  
-
-![image](https://user-images.githubusercontent.com/23518329/102706487-ac3bce80-42d5-11eb-851a-c30ad8f8debb.png)  
-
-![image](https://user-images.githubusercontent.com/23518329/102706488-ad6cfb80-42d5-11eb-8e99-b39b5b44302b.png)  
+![image](https://user-images.githubusercontent.com/23518329/102706577-6d5a4880-42d6-11eb-8964-adf87ec5d44b.png) 
 
 웹 사이트 상단의 네비게이션 바를 이용해 게시판을 이동할 수 있다.  
+
 - **게시판 첫 방문**
-![image](https://user-images.githubusercontent.com/23518329/102706495-c2498f00-42d5-11eb-802f-3171a76a04c0.png)  
-![image](https://user-images.githubusercontent.com/23518329/102706497-c7a6d980-42d5-11eb-855a-97f727ab00ac.png)  
+
+![image](https://user-images.githubusercontent.com/23518329/102706585-7cd99180-42d6-11eb-9ee0-a38b1bee75c8.png)
+
 게시판으로 처음 이동 시 모든 레시피를 불러온다.  
 - **게시판 검색**
-![image](https://user-images.githubusercontent.com/23518329/102706509-e2794e00-42d5-11eb-9512-988e85c331fd.png)  
-![image](https://user-images.githubusercontent.com/23518329/102706511-e4dba800-42d5-11eb-88ad-763a9b0b23f4.png)  
+
+![image](https://user-images.githubusercontent.com/23518329/102706594-8cf17100-42d6-11eb-8361-0c3ec1737461.png)
+
 게시판 검색 시 해당 키워드를 포함한 모든 레시피를 불러온다.  
 (나만의 레시피 게시판의 경우 오른쪽에 작성자의 별명과 삭제 버튼이 표시된다)  
+
 - **게시판 재방문**
-![image](https://user-images.githubusercontent.com/23518329/102706514-f2912d80-42d5-11eb-83ab-bf41d8c886bf.png)  
-![image](https://user-images.githubusercontent.com/23518329/102706516-f45af100-42d5-11eb-885f-0c4b32d60cff.png)  
-다른 게시판으로 이동한 후 다시 게시판으로 돌아오면 마지막으로 검색된 게시판들이 조회된다.  (브라우저 Session Storage 이용, 게시판 이동 시마다 API 요청을 하지 않아 낭비를 막음)  
+
+![image](https://user-images.githubusercontent.com/23518329/102706602-a0044100-42d6-11eb-8145-57a3fbb7dd65.png)
+
+다른 게시판으로 이동한 후 다시 게시판으로 돌아오면 마지막으로 검색된 게시판들이 조회된다.  (브라우저 Session Storage 이용, 게시판 이동 시마다 API 요청을 하지 않아 낭비를 막음) 
+
+- **게시판 글 목록 전환**
+
+![image](https://user-images.githubusercontent.com/23518329/102706609-b5796b00-42d6-11eb-866e-e3c0fb6eb859.png)
+
+두 게시판 모두 각 페이지 당 10 개씩 레시피가 출력되고, 게시판 하단의 버튼으로 페이지를 이동할 수 있다.  현재 페이지는 파란색으로 표시되고, 페이지
+번호 목록의 개수도 10 개씩 출력된다.
+
