@@ -31,12 +31,16 @@
 시 해당 레시피를 삭제(or 취소)할 수 있다.
 ## 시스템 구조
 ![image](https://user-images.githubusercontent.com/23518329/102706446-5109dc00-42d5-11eb-88b2-ba26786b0b0e.png)  
+
 ## 어플리케이션 동작
 ### 게시판 공통
 - **게시판 이동**
 ![image](https://user-images.githubusercontent.com/23518329/102706486-a940de00-42d5-11eb-929b-a47504da0462.png)  
+
 ![image](https://user-images.githubusercontent.com/23518329/102706487-ac3bce80-42d5-11eb-851a-c30ad8f8debb.png)  
+
 ![image](https://user-images.githubusercontent.com/23518329/102706488-ad6cfb80-42d5-11eb-8e99-b39b5b44302b.png)  
+
 웹 사이트 상단의 네비게이션 바를 이용해 게시판을 이동할 수 있다.  
 - **게시판 첫 방문**
 ![image](https://user-images.githubusercontent.com/23518329/102706495-c2498f00-42d5-11eb-802f-3171a76a04c0.png)  
