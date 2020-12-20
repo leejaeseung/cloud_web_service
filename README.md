@@ -34,7 +34,9 @@
 
 ## 어플리케이션 동작
 ### 게시판 공통
+
 - **게시판 이동**
+
 ![image](https://user-images.githubusercontent.com/23518329/102706486-a940de00-42d5-11eb-929b-a47504da0462.png)  
 
 ![image](https://user-images.githubusercontent.com/23518329/102706487-ac3bce80-42d5-11eb-851a-c30ad8f8debb.png)  
