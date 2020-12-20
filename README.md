@@ -30,6 +30,7 @@
 2. 각 레시피마다 삭제 버튼이 존재하고 버튼 클릭 후 올바른 비밀번호 입력
 시 해당 레시피를 삭제(or 취소)할 수 있다.
 ## 시스템 구조
+
 ![image](https://user-images.githubusercontent.com/23518329/102706446-5109dc00-42d5-11eb-88b2-ba26786b0b0e.png)  
 
 ## 어플리케이션 동작
@@ -57,12 +58,43 @@
 
 ![image](https://user-images.githubusercontent.com/23518329/102706602-a0044100-42d6-11eb-8145-57a3fbb7dd65.png)
 
-다른 게시판으로 이동한 후 다시 게시판으로 돌아오면 마지막으로 검색된 게시판들이 조회된다.  (브라우저 Session Storage 이용, 게시판 이동 시마다 API 요청을 하지 않아 낭비를 막음) 
+다른 게시판으로 이동한 후 다시 게시판으로 돌아오면 마지막으로 검색된 게시판들이 조회된다.
+(브라우저 Session Storage 이용, 게시판 이동 시마다 API 요청을 하지 않아 낭비를 막음) 
 
 - **게시판 글 목록 전환**
 
 ![image](https://user-images.githubusercontent.com/23518329/102706609-b5796b00-42d6-11eb-866e-e3c0fb6eb859.png)
 
-두 게시판 모두 각 페이지 당 10 개씩 레시피가 출력되고, 게시판 하단의 버튼으로 페이지를 이동할 수 있다.  현재 페이지는 파란색으로 표시되고, 페이지
-번호 목록의 개수도 10 개씩 출력된다.
+두 게시판 모두 각 페이지 당 10 개씩 레시피가 출력되고, 게시판 하단의 버튼으로 페이지를 이동할 수 있다.
+현재 페이지는 파란색으로 표시되고, 페이지 번호 목록의 개수도 10 개씩 출력된다.
 
+- **레시피 조회**
+
+![image](https://user-images.githubusercontent.com/23518329/102706627-efe30800-42d6-11eb-84e9-e4f9a753d28e.png)
+
+레시피 클릭 시 레시피 정보 창이 나타나고, 닫기 버튼 혹은 회색의 바탕을
+클릭하면 창이 닫힌다.
+
+### 나만의 레시피 게시판
+- **레시피 만들기**
+
+![image](https://user-images.githubusercontent.com/23518329/102706636-10ab5d80-42d7-11eb-9dad-e119b1aa7e21.png)
+
+나만의 레시피 게시판에서 오른쪽 “레시피 만들기” 버튼을 누르면 레시피 생성
+창이 나타난다.
+레시피 정보를 입력하고 등록(or 취소) 버튼을 누르면 레시피가
+생성(or 취소)된다.
+
+![image](https://user-images.githubusercontent.com/23518329/102706646-20c33d00-42d7-11eb-8d0d-dd609c5c5c46.png)
+
+- **레시피 삭제**
+
+![image](https://user-images.githubusercontent.com/23518329/102706654-3173b300-42d7-11eb-85cd-d42eb236fd23.png)
+
+나만의 레시피 게시판에서 레시피 오른쪽의 삭제 버튼을 누르면 레시피 삭제 창이 나타난다. 
+해당 레시피를 생성할 때 등록한 패스워드를 입력하고 삭제(or 취소)버튼을 누르면 해당 레시피가 삭제(or 취소)된다. 
+틀린 패스워드를 입력하면 삭제되지 않는다.
+
+![image](https://user-images.githubusercontent.com/23518329/102706659-4cdebe00-42d7-11eb-8d83-07776a3b967b.png)
+
+![image](https://user-images.githubusercontent.com/23518329/102706662-510adb80-42d7-11eb-970d-b56bc8a54cc0.png)
